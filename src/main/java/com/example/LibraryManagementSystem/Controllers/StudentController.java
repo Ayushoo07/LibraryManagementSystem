@@ -1,9 +1,11 @@
 package com.example.LibraryManagementSystem.Controllers;
 
 import com.example.LibraryManagementSystem.DTO.RequestDto.AddStudentDto;
-import com.example.LibraryManagementSystem.DTO.RequestDto.GetStudentIdDto;import com.example.LibraryManagementSystem.DTO.RequestDto.UpdateStudentByIdDto;import com.example.LibraryManagementSystem.Entity.Student;import com.example.LibraryManagementSystem.Services.StudentService;
+import com.example.LibraryManagementSystem.DTO.RequestDto.GetStudentIdDto;import com.example.LibraryManagementSystem.DTO.RequestDto.UpdateStudentByIdDto;
+import com.example.LibraryManagementSystem.DTO.ResponseDto.GetStudentResponseDto;
+import com.example.LibraryManagementSystem.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*;import java.util.List;
 
 @RestController
 @RequestMapping("/student")
@@ -33,10 +35,15 @@ public class StudentController
 
 
     @GetMapping("/getStudentById")
-  public Student getStudentById(@RequestBody GetStudentIdDto getStudentIdDto)throws Exception
+  public GetStudentResponseDto getStudentById(@RequestBody GetStudentIdDto getStudentIdDto)throws Exception
     {
       return studentService.getStudentById(getStudentIdDto);
     }
 
-    // find all the students
+  @GetMapping("/getAllStudents")
+  public List<GetStudentResponseDto> getAllStudent()
+  {
+    return studentService.getAllStudent();
+  }
+
 }

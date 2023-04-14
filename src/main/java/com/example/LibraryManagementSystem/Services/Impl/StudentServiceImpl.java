@@ -3,13 +3,14 @@ package com.example.LibraryManagementSystem.Services.Impl;
 import com.example.LibraryManagementSystem.DTO.RequestDto.AddStudentDto;
 import com.example.LibraryManagementSystem.DTO.RequestDto.GetStudentIdDto;
 import com.example.LibraryManagementSystem.DTO.RequestDto.UpdateStudentByIdDto;
+import com.example.LibraryManagementSystem.DTO.ResponseDto.GetStudentResponseDto;
 import com.example.LibraryManagementSystem.Entity.Card;
 import com.example.LibraryManagementSystem.Entity.Student;
 import com.example.LibraryManagementSystem.Enums.CardStatus;
-import com.example.LibraryManagementSystem.Repository.StudentRepository;
+import com.example.LibraryManagementSystem.Exceptions.StudentNotFoundException;import com.example.LibraryManagementSystem.Repository.StudentRepository;
 import com.example.LibraryManagementSystem.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;import java.util.ArrayList;import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -61,7 +62,7 @@ public class StudentServiceImpl implements StudentService {
         student=studentRepository.findById(updateStudentByIdDto.getId()).get();
     }
     catch (Exception e){
-      throw new Exception("Student id Does Not Exist");
+      throw new StudentNotFoundException("Student id Does Not Exist");
     }
 
 
@@ -80,18 +81,45 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public Student getStudentById(GetStudentIdDto getStudentIdDto) throws Exception {
+  public GetStudentResponseDto getStudentById(GetStudentIdDto getStudentIdDto) throws Exception {
     Student student=new Student();
+    GetStudentResponseDto getStudentResponseDto=new GetStudentResponseDto();
 
     try {
         student=studentRepository.findById(getStudentIdDto.getStudentId()).get();
     }
     catch (Exception e)
     {
-      throw new Exception("Student does not Exist");
+      throw new StudentNotFoundException("Student does not Exist");
     }
 
-    return student;
+    getStudentResponseDto.setName(student.getName());
+    getStudentResponseDto.setId(student.getId());
+    getStudentResponseDto.setDepartment(student.getDepartment());
+    getStudentResponseDto.setAge(student.getAge());
+    getStudentResponseDto.setMobNo(student.getMobNo());
+
+    return getStudentResponseDto;
   }
+
+  @Override
+  public List<GetStudentResponseDto> getAllStudent() {
+      List<GetStudentResponseDto> res=new ArrayList<>();
+      List<Student> students=studentRepository.findAll();
+
+      for (Student student: students) {
+          GetStudentResponseDto getStudentResponseDto=new GetStudentResponseDto();
+          getStudentResponseDto.setName(student.getName());
+          getStudentResponseDto.setId(student.getId());
+          getStudentResponseDto.setDepartment(student.getDepartment());
+          getStudentResponseDto.setMobNo(student.getMobNo());
+
+          res.add(getStudentResponseDto);
+      }
+
+      return res;
+
+
+    }
 
 }

@@ -1,12 +1,9 @@
 package com.example.LibraryManagementSystem.Controllers;
 
-import com.example.LibraryManagementSystem.DTO.RequestDto.AddBookDto;import com.example.LibraryManagementSystem.Entity.Book;
+import com.example.LibraryManagementSystem.DTO.RequestDto.AddBookDto;import com.example.LibraryManagementSystem.DTO.RequestDto.GetAuthorIdDto;import com.example.LibraryManagementSystem.DTO.RequestDto.GetAuthorNameDto;import com.example.LibraryManagementSystem.DTO.ResponseDto.GetBookResponseDto;import com.example.LibraryManagementSystem.Entity.Book;
 import com.example.LibraryManagementSystem.Services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;import java.util.List;
 
 @RestController
 @RequestMapping("/book")
@@ -21,9 +18,22 @@ public class BookController
         return bookService.addBook(addBookDto);
     }
 
-    // find all the books
+    @GetMapping("/getAllBooks")
+    public List<GetBookResponseDto> getAllBooks()
+    {
+        return bookService.getAllBooks();
+    }
 
-    // find all the books of a particular authorId
+    @GetMapping("/getAllBooksByAuthorId")
+    public  List<GetBookResponseDto> getAllBooksByAuthorId(@RequestBody GetAuthorIdDto getAuthorIdDto)
+    {
+        return bookService.getAllBooksByAuthorId(getAuthorIdDto);
+    }
 
+    @GetMapping("/getNumberOfBooksByAuthor")
+    public int getNumberOfBooksByAuthor(@RequestBody GetAuthorNameDto getAuthorNameDto )
+    {
+        return bookService.getNumberOfBooksByAuthor(getAuthorNameDto);
+    }
     // // find the number of books written by an autho
 }
