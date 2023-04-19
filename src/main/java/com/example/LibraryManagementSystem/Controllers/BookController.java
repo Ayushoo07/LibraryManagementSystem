@@ -35,5 +35,4 @@ public class BookController
     {
         return bookService.getNumberOfBooksByAuthor(getAuthorNameDto);
     }
-    // // find the number of books written by an autho
 }

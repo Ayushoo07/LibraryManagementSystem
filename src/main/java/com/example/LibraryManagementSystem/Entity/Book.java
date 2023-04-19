@@ -5,7 +5,7 @@ import com.example.LibraryManagementSystem.Enums.Genre;import jakarta.persistenc
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Setter;import java.util.ArrayList;import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -28,7 +28,16 @@ public class Book
 
     private int price;
 
+    private  boolean isIssued=false;
+
     @ManyToOne
     @JoinColumn
     Author author;
+
+    @ManyToOne
+    @JoinColumn
+    Card card;
+
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+  List<Transaction> TransactionList = new ArrayList<>();
 }

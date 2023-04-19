@@ -4,7 +4,7 @@ package com.example.LibraryManagementSystem.Entity;
 import com.example.LibraryManagementSystem.Enums.CardStatus;import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;import org.hibernate.annotations.UpdateTimestamp;
-import java.util.Date;
+import java.util.ArrayList;import java.util.Date;import java.util.List;
 
 @Entity
 @Table(name = "card")
@@ -32,4 +32,10 @@ public class Card
     @OneToOne
     @JoinColumn
     Student student;
+
+    @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
+    List<Book> booksIssed=new ArrayList<>();
+
+  @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+  List<Transaction> transactionList = new ArrayList<>();
 }
