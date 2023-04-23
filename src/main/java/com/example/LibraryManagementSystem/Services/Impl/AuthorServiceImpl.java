@@ -18,7 +18,6 @@ public class AuthorServiceImpl implements AuthorService{
       author.setName(addAuthorDto.getName());
       author.setAge(addAuthorDto.getAge());
       author.setEmail(addAuthorDto.getEmail());
-
       authorRepository.save(author);
     return "Author added Successfully";
   }

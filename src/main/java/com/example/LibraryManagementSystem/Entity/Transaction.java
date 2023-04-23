@@ -23,6 +23,8 @@ public class Transaction {
   @CreationTimestamp
   private Date issueDate;
 
+  private String returnDate;
+
     boolean isIssued;
 
   @Enumerated(EnumType.STRING)

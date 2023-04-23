@@ -1,6 +1,7 @@
 package com.example.LibraryManagementSystem.DTO.ResponseDto;
 
-import com.example.LibraryManagementSystem.Enums.TransactionStatus;import lombok.AllArgsConstructor;
+import com.example.LibraryManagementSystem.Enums.TransactionStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,11 +10,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class IsssueBookResponseDto {
+public class ReturnBookResponse {
     private String issueBookNo;
 
     private String bookName;
 
     private TransactionStatus transactionStatus;
-
 }

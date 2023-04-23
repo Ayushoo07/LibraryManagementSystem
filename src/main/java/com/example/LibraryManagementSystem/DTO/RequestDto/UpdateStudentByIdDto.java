@@ -20,4 +20,6 @@ public class UpdateStudentByIdDto
     private Department department;
 
     private String mobNo;
+
+    private String email;
 }

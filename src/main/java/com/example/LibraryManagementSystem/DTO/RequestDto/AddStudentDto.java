@@ -16,4 +16,6 @@ public class AddStudentDto {
     private Department department;
 
     private String mobNo;
+
+    private String email;
 }

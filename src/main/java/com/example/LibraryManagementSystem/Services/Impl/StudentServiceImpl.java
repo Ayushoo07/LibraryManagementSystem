@@ -24,6 +24,7 @@ public class StudentServiceImpl implements StudentService {
     student.setAge(studentRequestDto.getAge());
     student.setMobNo(studentRequestDto.getMobNo());
     student.setDepartment(studentRequestDto.getDepartment());
+    student.setEmail(studentRequestDto.getEmail());
 
     Card card=new Card();
     card.setCardStatus(CardStatus.ACTIVATED);
@@ -74,6 +75,8 @@ public class StudentServiceImpl implements StudentService {
       student.setAge(updateStudentByIdDto.getAge());
     if(updateStudentByIdDto.getDepartment()!=null)
       student.setDepartment(updateStudentByIdDto.getDepartment());
+    if(updateStudentByIdDto.getEmail()!=null)
+      student.setEmail(updateStudentByIdDto.getEmail());
 
     studentRepository.save(student);
 
@@ -113,6 +116,8 @@ public class StudentServiceImpl implements StudentService {
           getStudentResponseDto.setId(student.getId());
           getStudentResponseDto.setDepartment(student.getDepartment());
           getStudentResponseDto.setMobNo(student.getMobNo());
+      getStudentResponseDto.setAge(student.getAge());
+      getStudentResponseDto.setEmail(student.getEmail());
 
           res.add(getStudentResponseDto);
       }

@@ -1,6 +1,6 @@
 package com.example.LibraryManagementSystem.Controllers;
 
-import com.example.LibraryManagementSystem.DTO.RequestDto.IssueBookDto;import com.example.LibraryManagementSystem.DTO.ResponseDto.IsssueBookResponseDto;import com.example.LibraryManagementSystem.Services.TransactionService;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.web.bind.annotation.PostMapping;import org.springframework.web.bind.annotation.RequestMapping;import org.springframework.web.bind.annotation.RestController;
+import com.example.LibraryManagementSystem.DTO.RequestDto.IssueBookDto;import com.example.LibraryManagementSystem.DTO.RequestDto.ReturnBookDto;import com.example.LibraryManagementSystem.DTO.ResponseDto.IsssueBookResponseDto;import com.example.LibraryManagementSystem.DTO.ResponseDto.ReturnBookResponse;import com.example.LibraryManagementSystem.Services.TransactionService;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.web.bind.annotation.PostMapping;import org.springframework.web.bind.annotation.PutMapping;import org.springframework.web.bind.annotation.RequestMapping;import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -14,6 +14,10 @@ public class TransactionController
     public IsssueBookResponseDto issueBook(IssueBookDto issueBookDto)throws Exception
     {
         return transactionService.issueBook(issueBookDto);
-
+    }
+    @PutMapping("/returnbook")
+    public ReturnBookResponse returnBook(ReturnBookDto returnBookDto) throws Exception
+    {
+        return  transactionService.returnBook(returnBookDto);
     }
 }

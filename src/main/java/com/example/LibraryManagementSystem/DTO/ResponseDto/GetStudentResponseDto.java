@@ -19,4 +19,6 @@ public class GetStudentResponseDto {
     private Department department;
 
     private String mobNo;
+
+    private String email;
 }
